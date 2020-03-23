@@ -4,7 +4,7 @@ project(samples)
 
 include(cmake/function.cmake)
 
-add_subdirectory(lib_calc)
+add_subdirectory(polinomial_lib)
 add_subdirectory(main)
 
 option(BTEST "build test?" OFF)
