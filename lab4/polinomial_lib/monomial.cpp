@@ -27,7 +27,7 @@ Monom::Monom(int _n, int* _power, double _coeff)
 			power = new int[_n];
 			for (int i = 0; i < _n; i++)
 				if (_power[i] >= 0)
-					power[i] = power[i];
+					power[i] = _power[i];
 				else
 					throw "Power is lower than 0";
 		}
