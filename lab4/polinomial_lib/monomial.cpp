@@ -125,4 +125,113 @@ int Monom::getN()
 	return n;
 }
 
+Monom& Monom::operator=(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	coeff = a.coeff;
+	n = a.n;
+	next = a.next;
+	delete[] power;
+	power = new int[n];
+	for (int i = 0; i < n; i++)
+		power[i] = a.power[i];
+	return *this;
+}
 
+Monom Monom::operator+(Monom& a)
+{
+	Monom tmp(a);
+	if (n != a.n) throw - 1;
+	if (!(*this == a)) throw - 1;
+	tmp.coeff = coeff + a.coeff;
+	return tmp;
+}
+
+Monom Monom::operator+=(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	if (!(*this == a)) throw - 1;
+	coeff += a.coeff;
+	return *this;
+}
+
+Monom Monom::operator-(Monom& a)
+{
+	Monom tmp(a);
+	if (n != a.n) throw - 1;
+	if (!(*this == a)) throw - 1;
+	tmp.coeff = coeff - a.coeff;
+	return tmp;
+}
+
+Monom Monom::operator-=(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	if (!(*this == a)) throw - 1;
+	coeff -= a.coeff;
+	return *this;
+}
+
+Monom Monom::operator*(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	Monom tmp(a);
+	tmp.coeff = coeff * a.coeff;
+	for (int i = 0; i < n; i++)
+		tmp.power[i] = power[i] * a.power[i];
+	return tmp;
+}
+
+Monom Monom::operator*=(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	coeff *= a.coeff;
+	for (int i = 0; i < n; i++)
+		power[i] += a.power[i];
+	return *this;
+}
+
+bool Monom::operator==(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	for (int i = 0; i < n; i++)
+		if (power[i] != a.power[i])
+			return false;
+	return true;
+}
+
+bool Monom::operator>(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	if (*this == a) throw "Equal";
+	for (int i = 0; i < n; i++)
+	{
+		if (power[i] == a.power[i])
+			continue;
+		else
+			if (power[i] > a.power[i])
+				return true;
+			else
+				return false;
+	}
+	return true;
+}
+
+bool Monom::operator<(Monom& a)
+{
+	if (n != a.n) throw - 1;
+	if (*this == a) throw "Equal";
+	for (int i = 0; i < n; i++)
+	{
+		if (power[i] == a.power[i])
+			continue;
+		else
+			if (power[i] < a.power[i])
+				return true;
+			else
+				return false;
+	}
+	if (coeff > a.coeff)
+		return false;
+	return true;
+}
