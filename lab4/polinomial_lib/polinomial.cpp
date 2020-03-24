@@ -1,2 +1,2 @@
-#inlude "polinomial.h"
+#include "polinomial.h"
 
