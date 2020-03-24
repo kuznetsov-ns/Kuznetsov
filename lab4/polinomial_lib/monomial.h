@@ -26,12 +26,12 @@ public:
 	int getN();
 
 	Monom& operator=(Monom& a);
-	Monom& operator+(Monom& a);
-	Monom& operator+=(Monom& a);
-	Monom& operator-(Monom& a);
-	Monom& operator-=(Monom& a);
-	Monom& operator*(Monom& a);
-	Monom& operator*=(Monom& a);
+	Monom operator+(Monom& a);
+	Monom operator+=(Monom& a);
+	Monom operator-(Monom& a);
+	Monom operator-=(Monom& a);
+	Monom operator*(Monom& a);
+	Monom operator*=(Monom& a);
 	bool operator==(Monom& a);
 	bool operator>(Monom& a);
 	bool operator<(Monom& a);
