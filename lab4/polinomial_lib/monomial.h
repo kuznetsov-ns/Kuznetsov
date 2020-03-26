@@ -35,4 +35,25 @@ public:
 	bool operator==(Monom& a);
 	bool operator>(Monom& a);
 	bool operator<(Monom& a);
+
+	friend istream& operator>>(istream& istr, Monom& a)
+	{
+		istr >> a.coeff;
+		for (int i = 0; i < a.n; i++)
+			istr >> a.power[i];
+		return istr;
+	}
+	friend ostream& operator<<(ostream& ostr, Monom& a)
+	{
+		ostr << a.coeff;
+		if (a.coeff != 0)
+		{
+			for (int i = 0; i < a.n; i++)
+				if (a.power[i] != 0)
+				{
+					ostr << "(x[" << i << "]^" << a.power[i] << ")";
+				}
+		}
+		return ostr;
+	}
 };
